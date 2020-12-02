@@ -5,22 +5,22 @@ const bodyParser = require("body-parser");
 
 const app = express();
 
-var items =[];
+let items =[];
 
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({extended:true}));
-
+app.use(express.static("public"))
 app.get("/", function(req, res) {
-  var today = new Date();
-  var day = "";
-  var new_today = "";
-  var options = {
+  let today = new Date();
+  let day = "";
+  let new_today = "";
+  let options = {
     weekday:"long",
     day:"numeric",
     month:"long"
   };
- var day = today.toLocaleString("hi-IN", options);
+ day = today.toLocaleString("hi-IN", options);
 /*  switch (today.getDay()) {
     case 0:
            day = "Sunday";
@@ -48,7 +48,7 @@ app.get("/", function(req, res) {
     });
 
   app.post("/", function(req,res){
-    var item = req.body.newItem;
+    let item = req.body.newItem;
     items.push(item);
     res.redirect("/");
     });
